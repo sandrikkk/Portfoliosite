@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Single Porfolio{% endblock title %}
+
+{% block body %}
+<!-- Preloader  -->
+<div id="loader" class="preloader">
+  <div class="loading">
+    <div class="profile-image">
+      <img src="{% static 'resumeapp/images/profile-loader.jpg' %}" alt="">
+      <svg style="position: absolute;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle class="js-circle circle" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
+        <circle class="js-circle circletwo" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- Preloader End --> 
+
+<div class="page-cover">
+  <div id="page-scroll">
+    <div class="barba-wrapper" data-barba="wrapper">
+      <main data-barba="container">
+    <!-- Page Wrapper -->
+    <div class="container">
+      <div class="page-wrapper">
+
+        <header id="fixed">
+          <div class="hamburger hamburger--elastic">
+            <span class="hamburger-box"> <span class="hamburger-inner"></span> </span>
+          </div>
+          <nav>
+            <ul>
+              <li><a class="active" href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'resume' %}">Resume</a></li>
+              <li><a href="{% url 'all-works' %}">Portfolio</a></li>
+              <li><a href="{% url 'blog-list' %}">Blog</a></li>
+            </ul>
+          </nav>
+        </header>
+
+        <div class="work-hero">
+          <div class="spacer-15"></div>
+          <h1 class="big-title">{{single_portfolio.title}}</h1>
+          <div class="spacer-30"></div>
+        </div>
+        <div class="work_info">
+          <div class="row">
+            <div class="col-xl-3">
+              <div class="work_info_list">
+                <div class="li classic-animation"><span>Date</span><h3> {{single_portfolio.date}} </h3></div>
+              </div>
+            </div>
+            <div class="col-xl-8 offset-xl-1 work_description">
+              <h2 class="title classic-animation" data-delay=".2">About the Project</h2>
+              <p class="text scale-animation" data-delay=".4"> {{single_portfolio.body}} </p>
+            </div>
+          </div>
+        </div>
+
+           <!-- Photos classic -->
+           <div class="spacer-45"></div>
+           <div class=" lightbox-gallery">
+            <div class="row">
+              <!-- a image -->
+              <div class="col-xl-12 scale-animation" data-duration="2" data-delay=".8">
+                <a href="{{single_portfolio.image.url}}" class="image lightbox">
+                  <img src="{{single_portfolio.image.url}}" alt="">
+                </a>
+              </div>
+          </div>
+
+
+          <!-- navigation -->
+          <div class="work-navigation">
+            {% comment %} <a href="work-4.html" class="emoji-btn prev"><span><i class="fa-solid fa-arrow-left-long"></i></span><div class="text">Prev Case</div></a> {% endcomment %}
+        
+            <a class="case" href="{% url 'all-works' %}">
+              <svg id="Object" height="16" viewBox="0 0 40 40" width="16"  xmlns="http://www.w3.org/2000/svg">
+                <rect height="14" width="14" x="1" y="25"/>
+                <rect height="14" width="14" x="25" y="25"/>
+                <rect height="14" width="14" x="1" y="1"/>
+                <rect height="14" width="14" x="25" y="1"/>
+              </svg>
+              </a>
+        
+            {% comment %} <a href="work-6.html" class="emoji-btn next"><span><i class="fa-solid fa-arrow-right-long"></i></span><div class="text">Next Case</div></a> {% endcomment %}
+          </div>
+
+              </div> <!-- page wrapper end -->
+            </div><!-- container -->
+          
+{% endblock body %}

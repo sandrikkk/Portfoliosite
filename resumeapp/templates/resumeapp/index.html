@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Index{% endblock title %}
+
+{% block body %}
+<body class="scroll-animation-on">
+<!-- Preloader  -->
+<div id="loader" class="preloader">
+  <div class="loading">
+    <div class="profile-image">
+      <img src="{% static 'resumeapp/images/profile.jpg' %}" alt="">
+      <svg style="position: absolute;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle class="js-circle circle" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
+        <circle class="js-circle circletwo" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- Preloader End --> 
+
+  <div class="page-cover">
+  <div id="page-scroll">
+    <div class="barba-wrapper" data-barba="wrapper">
+      <main data-barba="container">
+    <!-- Page Wrapper -->
+    <div class="container">
+      <div class="page-wrapper">
+        
+        <header id="fixed">
+          <div class="hamburger hamburger--elastic">
+            <span class="hamburger-box"> <span class="hamburger-inner"></span> </span>
+          </div>
+          <nav>
+            <ul>
+              <li><a class="active" href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'resume' %}">Resume</a></li>
+              <li><a href="{% url 'all-works' %}">Portfolio</a></li>
+              <li><a href="{% url 'blog-list' %}">Blog</a></li>
+            </ul>
+          </nav>
+        </header>
+        {% for abou in about %}
+      <section class="hero">
+        <div class="row">
+          <div class="col-xl-3 col-lg-4 col-md-6 profile-pic">
+            <div class="image clip-animation from-left" style="background-image: url({{abou.image.url}});">
+              <img src="{{abou.image.url}}" alt="">
+            </div>
+            <div class="social-links clip-animation">
+              <ul>
+                <li><a href="https://www.facebook.com/sandro.iashvili.98" target="_blank">Fb.</a></li>
+                <li><a href="https://www.linkedin.com/in/sandro-iashvili-50a106228/" target="_blank">Link.</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-9 col-lg-8 col-md-6 right-content">
+            <h5 class="hi classic-animation" data-delay=".5">Hello Everyone <span>👋</span></h5>
+            <div class="spacer-15"></div>
+            <h1 class="hero-big classic-animation" data-delay=".7">I'm {{abou.first_name}} {{abou.last_name}}<br> I am a<span class="element" data-values=" Python.,  Python Backend.,  Python Backend Programmer., " data-loop="true" data-backdelay="2">web interface.</span></h1>
+            <div class="spacer-30"></div>
+            <hr class="clip-animation" data-delay="1">
+            <ul class="row profile-info clip-animation" data-delay="1">
+              <li class="col-xl-4 col-lg-6"> <i class="far fa-calendar-alt"></i> <span>{{abou.date}}</span></li>
+              <li class="col-xl-4 col-lg-6"> <a target="_blank" href="https://wa.me/+995557344080"><i class="fa-brands fa-whatsapp"></i> <span>{{abou.number}}</span></a></li>
+              <li class="col-xl-4 col-lg-6"> <a target="_blank" href="mailto:iashvilisandro7@gmail.com"><i class="fa-solid fa-at"></i> <span>{{abou.email}}</span></a></li>
+              <li class="col-xl-4 col-lg-6"> <i class="fa-solid fa-location-dot"></i> <span> {{abou.location}} </span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="spacer-30"></div>
+        <p class="clip-animation" data-delay="1.1"> {{abou.description}} </p>
+          {% endfor %}
+        <!-- download cv-->
+         <!-- <div class="spacer-45"></div>
+       <div class="col-xl-12 text-center">
+          <a href="#" class="emoji-button"><i>🤓 </i><span>Download My Cv</span></a>
+        </div> -->
+      </section>
+      <!-- Services -->
+      <section class="services scale-animation" data-delay="1.3">
+        <div class="spacer-45"></div>
+          <div class="spacer-45"></div>
+          <h5 class="underline-title">What i do</h5>
+
+        <div class="row services">
+          <div class="spacer-60"></div>
+          <!-- a service -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="service-item">
+            <i class="flaticon-web-design"></i>
+            <h5>Web Sites and <br> Platforms </h5>
+          </div>
+          </div>
+          <!-- a service -->
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="service-item">
+            <i class="flaticon-mobile-app"></i>
+            <h5>Desktop <br> Aplications </h5>
+          </div>
+        </div>
+      </section>
+    
+    <!-- testimonials -->
+    <section class="testimonials scale-animation">
+      <div class="spacer-45"></div>
+      <h5 class="underline-title">What The People Saying</h5>
+      <div class="spacer-60"></div>
+      <!-- Swiper -->
+      <div class="swiper testimonial-carousel">
+        <div class="swiper-wrapper">
+          {% for recomendations in recomendationss %}
+          <!-- a comment -->
+          <div class="swiper-slide">
+            <div class="left">
+              <i class="flaticon-right-quote"></i>
+            </div>
+            <div class="right">
+              <p class="little-p"> {{recomendations.recomendation}} </p>
+              <div class="comment-author">
+                <img class="author-image" src="{{recomendations.image.url}}" alt="">
+                <div class="author-info">
+                  <h4> {{recomendations.first_name}} {{recomendations.last_name}} </h4>
+                  <span> {{recomendations.title}} </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="spacer-60"></div>
+    </section>
+
+    <!-- clients -->
+    <div class="client-slider">
+      <ul class="bxslider">
+        <li><img src="{% static 'resumeapp/images/clients/client-1d.png' %}" alt="" /></li>
+        <li><img src="{% static 'resumeapp/images/clients/client-2d.png' %}" alt="" /></li>
+        <li><img src="{% static 'resumeapp/images/clients/client-3d.png' %}" alt="" /></li>
+        <li><img src="{% static 'resumeapp/images/clients/client-4d.png' %}" alt="" /></li>
+        <li><img src="{% static 'resumeapp/images/clients/client-5d.png' %}" alt="" /></li>
+        <li><img src="{% static 'resumeapp/images/clients/client-6d.png' %}" alt="" /></li>
+        <li><img src="{% static 'resumeapp/images/clients/client-7d.png' %}" alt="" /></li>
+      </ul>
+    </div>
+    </div> <!-- page wrapper end -->
+  </div><!-- container -->
+{% endblock body %}

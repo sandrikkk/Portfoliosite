@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Resume {% endblock title %}
+
+{% block body %}
+
+<body class="scroll-animation-on">
+
+  <!-- Preloader  -->
+  <div id="loader" class="preloader">
+    <div class="loading">
+      <div class="profile-image">
+        <img src="{% static 'resumeapp/images/profile-loader.jpg' %}" alt="">
+        <svg style="position: absolute;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <circle class="js-circle circle" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none" />
+          <circle class="js-circle circletwo" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <!-- Preloader End -->
+
+  <div class="page-cover">
+    <div id="page-scroll">
+      <div class="barba-wrapper" data-barba="wrapper">
+        <main data-barba="container">
+          <!-- Page Wrapper -->
+          <div class="container">
+            <div class="page-wrapper">
+
+              <header id="fixed">
+                <div class="hamburger hamburger--elastic">
+                  <span class="hamburger-box"> <span class="hamburger-inner"></span> </span>
+                </div>
+                <nav>
+                  <ul>
+                    <li><a class="active" href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'resume' %}">Resume</a></li>
+                    <li><a href="{% url 'all-works' %}">Portfolio</a></li>
+                    <li><a href="{% url 'blog-list' %}">Blog</a></li>
+                  </ul>
+                </nav>
+              </header>
+
+              <!-- Page Caption -->
+              <h5 class="underline-title">MY RESUME</h5>
+
+              <!-- Timeline Work -->
+              <div class="spacer-90"></div>
+              <div class="timeline-caption-outer">
+                <div class="timeline-caption">👨‍💻 <span>Works Experiences</span></div>
+              </div>
+              <div class="timeline row">
+                <!-- item -->
+                {% for workcard in workcards %}
+                <div class="{% cycle 'col-xl-6 col-lg-6 col-md-6 col-sm-12 timeline-item clip-animation from-top' 'col-xl-6 offset-xl-6 col-lg-6 offset-lg-6 col-md-6 offset-md-6 col-sm-12 timeline-item clip-animation from-top' %} "
+                  data-duration="1.5">
+                  <div class="timeline-outer">
+                    <span class="mini-text"> {{workcard.workdate}} </span>
+                    <h5> {{workcard.title}} </h5>
+                    <p class="little-p"> {{workcard.description}} </p>
+                  </div>
+                </div>
+                {% endfor %}
+                <h4 class = "more"> For More Details About <a href="{% url 'all-works' %}">Personal Projects</a></h4>               
+              <!-- Timeline -->
+              <div class="spacer-120"></div>
+              <div class="timeline-caption-outer">
+                <div class="timeline-caption">🎓 <span>Education</span></div>
+              </div>
+              <div class="timeline row">
+                <!-- item --> 
+                {% for edcard in edcards %}
+                <div class="{% cycle 'col-xl-6 col-lg-6 col-md-6 col-sm-12 timeline-item clip-animation from-top' 'col-xl-6 offset-xl-6 col-lg-6 offset-lg-6 col-md-6 offset-md-6 col-sm-12 timeline-item clip-animation from-top' %}"
+                  data-duration="1.5"=".5">
+                  <div class="timeline-outer">
+                    <span class="mini-text"> {{edcard.eddate}} </span>
+                    <h5> {{edcard.title}} </h5>
+                    <p class="little-p"> {{edcard.description}} </p>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              
+
+              <div class="spacer-60"></div>
+
+              <div class="skills">
+                <h5 class="underline-title classic-animation">My Skills</h5>
+                <div class="spacer-60"></div>
+
+                <div class="row">
+                  <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 classic-animation"=".3">
+                    <h2 class="skills-category">LANGUAGE</h2>
+                  </div>
+                  <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-11">
+                    <div class="row">
+                      {% for langskill in langskills %}
+                      <div class="pie-chart col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 classic-animation"=".5">
+                        <div class="chart" data-percent="{{langskill.procent}}" data-scale-color="#ffb400">
+                          <span class="percent">{{langskill.procent}}</span>
+                        </div>
+                        <div class="skills-description">
+                          <h6>{{langskill.languagename}}</h6>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="spacer-45"></div>
+                <hr>
+                <div class="spacer-45"></div>
+
+                <div class="row">
+                  <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 classic-animation">
+                    <h2 class="skills-category">CODING</h2>
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-11 classic-animation"=".2">
+                    {% for codeskill in codeskills %}
+                    {% if forloop.counter <= 3 %}
+                    <ul class="skill-list">
+                      <li>
+                        <div class="bar-info">
+                          <h3> {{codeskill.title}} </h3>
+                          <span> {{codeskill.procent}} </span>
+                        </div>
+                        <div class="progress">
+                          <div class="percentage" data-percent="{{codeskill.procent}}"></div>
+                        </div>
+                      </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 classic-animation"=".4">
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-md-5 col-sm-11 col-11 classic-animation"=".5">
+                    {% for codeskill in codeskills %}
+                    {% if forloop.counter > 3 %}
+                    <ul class="skill-list">
+                      <li>
+                        <div class="bar-info">
+                          <h3>{{codeskill.title}}</h3>
+                          <span>{{codeskill.procent}}</span>
+                        </div>
+                        <div class="progress">
+                          <div class="percentage" data-percent="{{codeskill.procent}}"></div>
+                        </div>
+                      </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- page wrapper end -->
+          </div><!-- container -->
+          
+  {% endblock body %}

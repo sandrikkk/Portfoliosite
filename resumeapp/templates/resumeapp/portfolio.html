@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Portfolio {% endblock title %}
+
+{% block body %}
+<!-- Preloader  -->
+<div id="loader" class="preloader">
+  <div class="loading">
+    <div class="profile-image">
+      <img src="{% static 'resumeapp/images/profile-loader.jpg' %}" alt="">
+      <svg style="position: absolute;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle class="js-circle circle" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
+        <circle class="js-circle circletwo" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- Preloader End --> 
+
+<div class="page-cover">
+  <div id="page-scroll">
+    <div class="barba-wrapper" data-barba="wrapper">
+      <main data-barba="container">
+    <!-- Page Wrapper -->
+    <div class="container">
+      <div class="page-wrapper">
+
+        <header id="fixed">
+          <div class="hamburger hamburger--elastic">
+            <span class="hamburger-box"> <span class="hamburger-inner"></span> </span>
+          </div>
+          <nav>
+            <ul>
+              <li><a class="active" href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'resume' %}">Resume</a></li>
+              <li><a href="{% url 'all-works' %}">Portfolio</a></li>
+              <li><a href="{% url 'blog-list' %}">Blog</a></li>
+            </ul>
+          </nav>
+        </header>
+        
+        <!-- Page Caption -->
+          <h5 class="underline-title">PORTFOLIO</h5>
+          <div  class="spacer-30"></div>
+        
+        <!-- PORTFOLIO SECTION
+        ================================================== --> 
+        <section class="portfolio" id="portfolio"> 
+          <div  class="spacer-15"></div>
+          <div class="section-head">
+            <!-- Filter -->
+            <ul class="list">
+              <li class="item"><a href="{% url 'all-works' %}" class="link">All Works</a></li>
+              {% for link in links %}
+              <li class="item"><a href="{{link.get_url}}" class="link">{{link.category_name}}</a></li>
+              {% endfor %}
+            </ul>
+            <div class="spacer-60"></div>
+          </div>
+          
+          <div class="row masonry">
+            {% for program in programs %}
+            <!-- portfolio item -->
+            <a href="{% url 'programs_detail' program.slug %}" class="col-xl-4 col-lg-6 col-md-6 grid-item photography">
+              <div class="work-holder scale-animation"  data-duration="2" data-delay=".3">
+              <figure class="portfolio-item">
+                <img src=" {{program.image.url}} " alt="">
+                <figcaption>
+                  <div class="outer">
+                    <div class="inner">
+                      <span>{{program.category}} </span>
+                      <h3 class="title">{{program.title}}</h3>
+                    </div>
+                  </div>
+              </figcaption>  
+              </figure>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </section>
+
+
+
+      </div> <!-- page wrapper end -->
+    </div><!-- container -->
+    
+{% endblock body %}

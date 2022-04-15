@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!-- Preloader  -->
+<div id="loader" class="preloader">
+  <div class="loading">
+    <div class="profile-image">
+      <img src="{% static 'resumeapp/images/profile-loader.jpg' %}" alt="">
+      <svg style="position: absolute;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <circle class="js-circle circle" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none" />
+        <circle class="js-circle circletwo" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none" />
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- Preloader End -->
+
+
+<div class="page-cover">
+  <div id="page-scroll">
+    <div class="barba-wrapper" data-barba="wrapper">
+      <main data-barba="container">
+        <!-- Page Wrapper -->
+        <div class="container">
+          <div class="page-wrapper">
+
+            <header id="fixed">
+              <div class="hamburger hamburger--elastic">
+                <span class="hamburger-box"> <span class="hamburger-inner"></span> </span>
+              </div>
+              <nav>
+                <ul>
+                  <li><a class="active" href="{% url 'index' %}">Home</a></li>
+                  <li><a href="{% url 'resume' %}">Resume</a></li>
+                  <li><a href="{% url 'all-works' %}">Portfolio</a></li>
+                  <li><a href="{% url 'blog-list' %}">Blog</a></li>
+                </ul>
+              </nav>
+            </header>
+
+            <!-- Page Caption -->
+            <h5 class="underline-title">BLOGS</h5>
+            <div class="spacer-30"></div>
+
+            <!-- BLOG SECTION
+        ================================================== -->
+            <div class="spacer-75"></div>
+            <div class="row masonry largrid">
+              {% for all_post in all_posts %}
+              <div class="col-xl-4 grid-item classic-animation" data-delay=".2" data-duration="2">
+                <div class="blog-grid ">
+                  <a href="{% url 'post-detail-page' all_post.slug %}" class="blog-grid-image"> 
+                    <img src=" {{all_post.image.url}} " alt="">
+                  </a>
+                  <div class="bottom-content">
+                    <a href="{% url 'post-detail-page' all_post.slug %}">
+                      <h4 class="entry-title"> {{all_post.title}} </h4>
+                    </a>
+                    <div class="metas">
+                      <a class="author" href="#">{{all_post.author.first_name}} {{all_post.author.last_name}}</a>
+                      <div class="blog-date"> {{all_post.date}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+
+
+          </div> <!-- page wrapper end -->
+        </div><!-- container -->
+{% endblock body %}
