@@ -26,5 +26,8 @@ class Portfolio(models.Model):
     image = models.ImageField(upload_to = "images/portfolio")
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def get_url(self):
+        return reverse("programs_detail", args = [self.category.slug, self.slug])
+
     def __str__(self):
         return f"{self.title}"

@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from xml.dom.minidom import Document
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static 
@@ -23,4 +24,5 @@ urlpatterns = [
     path('', include('experience.urls')),
     path("blog/", include('blog.urls')),
     path("portfolio/", include('category.urls')),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) \
+  + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

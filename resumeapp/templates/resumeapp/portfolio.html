@@ -8,7 +8,7 @@
 <div id="loader" class="preloader">
   <div class="loading">
     <div class="profile-image">
-      <img src="{% static 'resumeapp/images/profile-loader.jpg' %}" alt="">
+      <img src="{% static 'resumeapp/images/profile.jpg' %}" alt="">
       <svg style="position: absolute;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="none">
         <circle class="js-circle circle" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
         <circle class="js-circle circletwo" cx="50" cy="50" r="48" stroke="white" stroke-width="2" fill="none"  />
@@ -62,7 +62,7 @@
           <div class="row masonry">
             {% for program in programs %}
             <!-- portfolio item -->
-            <a href="{% url 'programs_detail' program.slug %}" class="col-xl-4 col-lg-6 col-md-6 grid-item photography">
+            <a href=" {{program.get_url}} " class="col-xl-4 col-lg-6 col-md-6 grid-item photography">
               <div class="work-holder scale-animation"  data-duration="2" data-delay=".3">
               <figure class="portfolio-item">
                 <img src=" {{program.image.url}} " alt="">

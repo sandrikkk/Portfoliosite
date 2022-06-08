@@ -16,11 +16,9 @@ def portfolio(request,category_slug=None):
         'links': links,
     })
 
-def portfolio_detail(request,program_slug):
-    try:
-        single_portfolio = Portfolio.objects.get(slug = program_slug)
-    except Exception as e:
-        raise e
-    return render(request, "resumeapp/single-portfolio.html", {
+def portfolio_detail(request,category_slug,program_slug):
+    single_portfolio = Portfolio.objects.get(category__slug = category_slug , slug = program_slug)
+
+    return render(request, 'resumeapp/single-portfolio.html', {
         "single_portfolio": single_portfolio
     })
